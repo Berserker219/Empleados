@@ -24,7 +24,7 @@ class Empleado(models.Model):
     departamento = models.ForeignKey(Departamento, on_delete=models.CASCADE)
     #avatar = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=None)
     habilidades = models.ManyToManyField(Habilidades)
-    hoja_vida = 
+    hoja_vida = RichTextField()
 
     def __str__(self):
         return  self.first_name

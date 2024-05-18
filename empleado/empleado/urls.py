@@ -23,4 +23,6 @@ from aplicaciones.home.views import IndexViews
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('aplicaciones.home.urls')),
+    path('', include('aplicaciones.empleados.urls')),
+    
 ]
