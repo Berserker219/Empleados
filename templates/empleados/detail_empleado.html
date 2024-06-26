@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Empleado {{detalle.first_name}} {{detalle.last_name}}
+{% endblock title %}
+
+{% block content %}
+{% include 'includes/header.html' %}
+    <div class="grid-container">
+        <div class="grid-x grid-margin-x align-center">
+            <div class="cell large-4 card" style="width: 700px; margin-top: 30px;">
+                <div class="card-divider">
+                    {{detalle.get_job_display}}
+                </div>
+                {% if detalle.avatar %}
+                    <img src="{{detalle.avatar.url}}">
+                {% else %}
+                    <img src="{% static 'img/DW1.jpg' %}">
+                {% endif %}
+                
+                <div class="card-section">
+                    <h4>{{detalle.full_name}}</h4>
+                    <p>{{detalle.first_name}}</p>
+                    <p>{{detalle.last_name}}</p>
+                    <p>{{detalle.departamento.shor_name}}</p>
+                    <p><span class="label">Habilidades:</span></p>
+                    {% if detalle.habilidades.exists %}
+                        <ul class="vertical menu">
+                            {% for h in detalle.habilidades.all %}
+                                <li>{{h.habilidad}}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <h6>No hay habilidades</h6>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock content %}
