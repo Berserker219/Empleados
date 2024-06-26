@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+empleados del departamento {{ area_empleados.shor_name }}
+{% endblock title %}
+ 
+{% block content %}
+    {% include 'includes/header.html' %}
+    <div class="grid-container">
+        <div class="grid-x">
+            <div class="cell">
+                <h2 class="cell">Empleados del Departamento {{ Departamento.shor_name }}</h2>
+            </div>   
+            <div class="cell grid-x">
+                <table>
+                    <thead>
+                      <tr>
+                        <th width="200">ID</th>
+                        <th>NOMBRES</th>
+                        <th width="150">APELLIDOS</th>
+                        <th width="150">DEPARTAMENTO</th>
+                        <th width="150">ACCION</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for e in empleado%} 
+                        <tr>
+                            <td>{{ e.id}}</td>
+                            <td>{{ e.first_name}}</td>
+                            <td>{{ e.last_name}}</td>
+                            <td>{{ e.departamento.name}}</td>
+                            <td><a class="button primary" href="{% url 'empleados_app:detalle_empleado' e.id%}">Ver</a></td>
+                        </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="5">No hay empleados en este departamento.</td>
+                            </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

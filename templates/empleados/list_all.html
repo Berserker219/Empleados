@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block title %}
+ Lista de Empleados
+{% endblock title %}
+
+{% block content %}
+{% include "includes/header.html" %}
+
+
+<div class="grid-container">
+    <div class="grid-x">
+        <h1 class="cell">Lista de Empleados</h1>
+        <!--Busqueda de Empleados-->
+        <form class="cell grid-x grid-margin-x" method="GET">
+          <div class="cell large-7">
+              <input type="text" id="kword" name="kword" placeholder=" buscar empleado">
+          </div>
+          <div class="cell large-2">
+              <button type="submit" class="success button" style="background-color: #1779ba; color: white;">Buscar</button>
+          </div>
+        </form>
+        <!--Tabla con los Empleados-->
+        <div class="cell grid-x">
+            <table>
+                <thead>
+                  <tr>
+                    <th width="200">ID</th>
+                    <th>NOMBRES</th>
+                    <th width="150">APELLIDOS</th>
+                    <th width="150">DEPARTAMENTO</th>
+                    <th width="150">ACCION</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for e in lista_empleados %}
+                    <tr>
+                      <td>{{ e.id}}</td>
+                      <td>{{ e.first_name}}</td>
+                      <td>{{ e.last_name}}</td>
+                      <td>{{ e.departamento.name}}</td>
+                      <td><a class="button primary" href="{% url 'empleados_app:detalle_empleado' e.id%}">Ver</a></td>
+                    </tr>
+                  {%endfor%}
+                </tbody>
+            </table>
+        </div>
+        <div class="cell">
+          {% if is_paginated %}
+          <nav aria-label="Pagination">
+            <ul class="pagination text-center">
+
+              <!--Boton para ir ala primera pagina-->
+              <li class="pagination"><a href="?page=1" aria-label="Page 2">Primero</a></li>
+
+              <!--Boton para ir una pagina atras-->
+              {% if  page_obj.has_previous %}
+              <li class="pagination-previous"><a href="?page={{page_obj.previous_page_number}}" aria-label="Page 2">Atras</a></li>
+              {% endif %}
+
+              <!-- Mostrar puntos suspensivos si la primera página no es la actual ni las próximas dos -->
+              {% if page_obj.number > 4 %}
+              <li class="ellipsis" aria-hidden="true"></li>
+              {% endif %}
+              
+              <!-- Mostrar un rango de páginas antes de la actual -->
+              {% for page_num in page_obj.paginator.page_range %}
+                {% if page_num >= page_obj.number|add:"-3" and page_num < page_obj.number %}
+                  <li><a href="?page={{ page_num }}" aria-label="Page {{ page_num }}">{{ page_num }}</a></li>
+                {% endif %}
+              {% endfor %}
+
+              <!-- Mostrar la página actual -->
+              <li class="current"><span class="show-for-sr">You're on page</span> {{ page_obj.number }}</li>
+
+              <!-- Mostrar un rango de páginas después de la actual -->
+              {% for page_num in page_obj.paginator.page_range %}
+                {% if page_num > page_obj.number and page_num <= page_obj.number|add:"3" %}
+                  <li><a href="?page={{ page_num }}" aria-label="Page {{ page_num }}">{{ page_num }}</a></li>
+                {% endif %}
+              {% endfor %}
+
+              <!-- Mostrar puntos suspensivos si la última página no está en el rango visible -->
+              {% if page_obj.number < page_obj.paginator.num_pages|add:"-3" %}
+              <li class="ellipsis" aria-hidden="true"></li>
+              {% endif %}
+
+              <!--Boton para la siguiente pagina-->
+              {% if  page_obj.has_next %}
+              <li class="pagination-next"><a href="?page={{page_obj.next_page_number}}" aria-label="Page 2">Siguiente</a></li>
+              {% endif %}
+
+              <!--Boton para ir a la ultima pagina-->
+              <li><a href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last page">Ultimo</a></li>
+            </ul>
+          </nav>
+          {% endif %}
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,18 @@
+<div class="top-bar"  style="height: 8%;">
+    <div class="top-bar-left">
+      <ul class="dropdown menu" data-dropdown-menu>
+        <li><a href="{% url 'empleados_app:inicio' %}">Empleados</a></li>
+        <li>
+          <a href="{% url 'empleados_app:empleados_all' %}">Lista</a>
+        </li>
+        <li><a href="{% url 'departamento_app:lista_departamento' %}">Departamentos</a></li>
+        <li><a href="{% url 'empleados_app:empleados_admin' %}">Administrar</a></li>
+        <li><a href="{% url 'departamento_app:nuevo_departamento' %}">Nuevo Departamento</a></li>
+      </ul>
+    </div>
+    <div class="top-bar-right">
+      <ul class="menu">
+        <li><a href="{% url 'empleados_app:empleado_add' %}" class="button">Registrar Nuevo</a></li>
+      </ul>
+    </div>
+  </div>
