@@ -1,28 +1,47 @@
 
 from pathlib import Path
+from django.core.exceptions import ImproperlyConfigured
+import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-3k#4sgqc2me(s6oo)_qmh3n%ny77d5*__gm4+3l$f#f3v+v5v7'
+with open("secret.json") as f:
+    secret = json.loads(f.read())
+
+def get_secret(secret_name, secrets=secret):
+    try:
+        return secrets[secret_name]
+    except:
+        msg =  "La variable %s no existe" % secret_name
+        raise ImproperlyConfigured(msg)
+
+
+SECRET_KEY = get_secret('SECRET_KEY')
 
 
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # Local apps
+)
+
+LOCAL_APPS = (
     'aplicaciones.departamento',
     'aplicaciones.empleados',
-]
+)
+
+THIRD_PARTY_APPS = ()
+
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

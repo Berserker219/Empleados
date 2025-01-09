@@ -17,7 +17,7 @@
                         <tr>
                             <td>{{ e.name }}</td>
                             <td>{{ e.shor_name }}</td>
-                            <td><a class="button primary" href="{% url 'empleados_app:area_empleado' e.name%}">Ver Empleados</a><td>
+                            <td><a class="button primary" style="border-radius: 100px;" href="{% url 'empleados_app:area_empleado' e.name%}">Ver Empleados</a><td>
                         </tr>
                         {%endfor%}
                     </tbody>

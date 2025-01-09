@@ -10,19 +10,6 @@
     <div class="grid-x">
         <h1 class="cell">Registrar nuevo Departamento</h1>
         <form class="cell callout grid-x grid-margin-x" method="POST" enctype="multipart/form-data"> {% csrf_token %}
-            <h3 class="cell">Datos del Empleado a Cargo</h3>
-            <div class="medium-6 cell">
-                <label>
-                    Nombre:
-                    {{form.nombre}}
-                </label>
-            </div>
-            <div class="medium-6 cell">
-                <label>
-                    Apellidos:
-                    {{form.apellidos}}
-                </label>
-            </div>
             <h3 class="cell">Datos Departamento</h3>
             <div class="medium-6 cell">
                 <label>
@@ -36,7 +23,7 @@
                     {{form.shortName}}
                 </label>
             </div>
-            <button type="submit" class="button">Guardar</button>
+            <button type="submit" class="button" style="border-radius: 100px;" >Guardar</button>
 
         </form>
     </div>
