@@ -1,13 +1,26 @@
-<h1>Buscar empleados por palabra clave</h1>
+{% extends 'base.html' %}
 
-<form method="get"> {% csrf_token %}
-    <input type="text" id="kword" name="kword" placeholder="Ingrese nombre aqui">
-    <button type="submit" style="border-radius: 100px;">Buscar</button>
-</form>
+{% block content %}
+<section id="buscar-empleados">
+    <h1>Buscar Empleados por Palabra Clave</h1>
+    <form method="get" class="search-form">
+        {% csrf_token %}
+        <input type="text" id="kword" name="kword" placeholder="Ingrese nombre aquí" class="search-input">
+        <button type="submit" class="search-button">Buscar</button>
+    </form>
 
-<h3>Lista resultado</h3>
-<ul>
-    {% for e in empleados%}
-    <li>{{e}}</li>
-    {%endfor%}
-</ul>
+    <h3>Resultados de la Búsqueda</h3>
+    <div class="results-container">
+        <ul class="results-list">
+            {% for empleado in empleados %}
+            <li class="result-item">
+                <span class="empleado-nombre">{{ empleado.full_name }}</span>
+                <span class="empleado-puesto">{{ empleado.job }}</span>
+                <span class="empleado-departamento">{{ empleado.departamento.name }}</span>
+                <a href="{% url 'empleados_app:detail_empleado' empleado.id %}" class="action-button view">Ver</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}

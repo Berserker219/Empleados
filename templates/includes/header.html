@@ -1,18 +1,14 @@
-<div class="top-bar"  style="height: 8%;">
-    <div class="top-bar-left">
-      <ul class="dropdown menu" data-dropdown-menu>
-        <li><a href="{% url 'empleados_app:inicio' %}">Empleados</a></li>
-        <li>
-          <a href="{% url 'empleados_app:empleados_all' %}">Lista</a>
-        </li>
-        <li><a href="{% url 'departamento_app:lista_departamento' %}">Departamentos</a></li>
-        <li><a href="{% url 'empleados_app:empleados_admin' %}">Administrar</a></li>
-        <li><a href="{% url 'departamento_app:nuevo_departamento' %}">Nuevo Departamento</a></li>
-      </ul>
-    </div>
-    <div class="top-bar-right">
-      <ul class="menu">
-        <li><a style="border-radius: 100px;" href="{% url 'empleados_app:empleado_add' %}" class="button">Registrar Nuevo</a></li>
-      </ul>
-    </div>
-  </div>
+
+<header>
+    <h1>App de Empleados</h1>
+    <nav>
+        <ul>
+            <li><a href="{% url 'empleados_app:inicio' %}">Inicio</a></li>
+            <li><a href="{% url 'empleados_app:empleados_all' %}">Lista de Empleados</a></li>
+            <li><a href="{% url 'departamento_app:lista_departamento' %}">Departamentos</a></li>
+            <li><a href="{% url 'empleados_app:empleados_admin' %}">Administrar</a></li>
+            <li><a href="{% url 'departamento_app:nuevo_departamento' %}">Agregar Departamento</a></li>
+            <li><a href="{% url 'empleados_app:empleado_add' %}">Agregar Empleado</a></li>
+        </ul>
+    </nav>
+</header>
