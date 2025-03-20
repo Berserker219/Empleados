@@ -35,19 +35,11 @@ section {
     padding: 20px;
 }
 
-table {
+ table {
     width: 100%;
     border-collapse: collapse;
-}
-
-table, th, td {
     border: 1px solid black;
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
-}
+} 
 
 form {
     display: flex;
@@ -96,7 +88,7 @@ form button:hover {
     margin: 0 auto 20px;
 }
 
-/* Estilos para el carrusel */
+
 /* Estilos para el carrusel */
 .carousel {
     position: relative;
@@ -235,6 +227,9 @@ h1, h3 {
     border-radius: 5px;
     text-decoration: none;
     font-size: 14px;
+    display: inline-block;
+    text-align: center;
+    margin-right: 5px;
 }
 
 .action-button.view {
@@ -247,88 +242,19 @@ h1, h3 {
 }
 
 /* Estilos generales */
-#lista-empleados {
+ #lista-empleados {
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
     font-family: Arial, sans-serif;
-}
+} 
 
 
 /* Formulario de búsqueda */
-.search-form {
-    margin-bottom: 20px;
-}
-
 .search-container {
     display: flex;
     justify-content: center;
     gap: 10px;
-}
-
-.search-input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 300px;
-    font-size: 16px;
-}
-
-.search-button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.search-button:hover {
-    background-color: #0056b3;
-}
-
-/* Tabla de empleados */
-.table-container {
-    overflow-x: auto;
-}
-
-.empleados-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-.empleados-table th, .empleados-table td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-.empleados-table th {
-    background-color: #f8f9fa;
-    font-weight: bold;
-}
-
-.empleados-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* Botones de acción */
-.action-button {
-    padding: 5px 10px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 14px;
-}
-
-.action-button.view {
-    background-color: #28a745;
-    color: white;
-}
-
-.action-button.view:hover {
-    background-color: #218838;
 }
 
 /* Paginación */
@@ -359,4 +285,117 @@ h1, h3 {
 
 .pagination-button:hover {
     background-color: #0056b3;
+}
+
+/* Estilos generales*/
+#lista-departamentos {
+    padding: 20px;
+    max-width: 800px; /* Reducimos el ancho máximo para una tabla más compacta */
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+} 
+
+/* Contenedor de la tabla */
+.table-container {
+    /* overflow-x: auto; */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos de la tabla */
+.departamentos-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.departamentos-table th, .departamentos-table td {
+    padding: 10px 15px; /* Reducimos el padding para una tabla más compacta */
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.departamentos-table th {
+    background-color: #333; /* Color de fondo para el encabezado */
+    color: white;
+    font-weight: bold;
+}
+
+.departamentos-table tr:hover {
+    background-color: #f9f9f9; /* Efecto hover más suave */
+} 
+
+/* Mensaje cuando no hay resultados */
+.no-results {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    padding: 20px;
+}
+
+
+/* Estilos generales */
+
+
+/* Tabla de empleados */
+
+.empleados-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.empleados-table th, .empleados-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.empleados-table th {
+    background-color: #333; /* Color de fondo para el encabezado */
+    color: white;
+    font-weight: bold;
+}
+
+.empleados-table tr:hover {
+    background-color: #f9f9f9; /* Efecto hover más suave */
+}
+
+/* Mensaje cuando no hay resultados */
+.no-results {
+    text-align: center;
+    color: #777;
+    font-style: italic;
+    padding: 20px;
+}
+
+/* Botones de acción */
+.action-button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    
+}
+
+.action-button.edit {
+    background-color: #ffc107; /* Amarillo para editar */
+    color: black;
+}
+
+.action-button.delete {
+    background-color: #dc3545; /* Rojo para eliminar */
+    color: white;
+}
+
+.action-button.edit:hover {
+    background-color: #e0a800; /* Amarillo oscuro al pasar el mouse */
+}
+
+.action-button.delete:hover {
+    background-color: #c82333; /* Rojo oscuro al pasar el mouse */
 }

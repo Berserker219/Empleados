@@ -4,102 +4,80 @@
 {% block content %}
 {% include "includes/header.html" %}
 
+<section id="lista-empleados">
+  <h1>Administrar Empleados</h1>
 
-<div class="grid-container">
-    <div class="grid-x">
-        <h1 class="cell">Lista de Empleados</h1>
-        <form class="cell grid-x grid-margin-x" method="GET">
-          <div class="cell large-7">
-              <input type="text" id="kword" name="kword" placeholder=" buscar empleado">
-          </div>
-          <div class="cell large-2">
-              <button type="submit" class="success button" style="background-color: #1779ba; color: white; border-radius: 100px;">Buscar</button>
-          </div>
-        </form>
-        <!--Tabla con los Empleados-->
-        <div class="cell grid-x">
-            <table>
-                <thead>
-                  <tr>
-                    <th width="200">ID</th>
-                    <th>NOMBRES</th>
-                    <th width="150">APELLIDOS</th>
-                    <th width="150">DEPARTAMENTO</th>
-                    <th width="150">ACCION</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for e in empleadosAdmin %}
-                    <tr>
-                      <td>{{ e.id}}</td>
-                      <td>{{ e.first_name}}</td>
-                      <td>{{ e.last_name}}</td>
-                      <td>{{ e.departamento.name}}</td>
-                      <td>
-                        <a class="button primary" href="{% url 'empleados_app:modificar_empleado' e.id%}">Editar</a>
-                      </td>
-                      <td width=" 200">
-                        <a class="button"  href="{% url 'empleados_app:borrado' e.id%}">Eliminar</a>
-                      </td>
-                    </tr>
-                  {%endfor%}
-                </tbody>
-            </table>
-        </div>
-        <div class="cell">
-          {% if is_paginated %}
-          <nav aria-label="Pagination">
-            <ul class="pagination text-center">
+  <!-- Busqueda de Empleados -->
+  <form method="GET" class="search-form">
+      <div class="search-container">
+          <input type="text" id="kword" name="kword" placeholder="Buscar empleado" class="search-input">
+          <button type="submit" class="search-button">Buscar</button>
+      </div>
+  </form>
 
-              <!--Boton para ir ala primera pagina-->
-              <li class="pagination"><a href="?page=1" aria-label="Page 2">Primero</a></li>
-
-              <!--Boton para ir una pagina atras-->
-              {% if  page_obj.has_previous %}
-              <li class="pagination-previous"><a href="?page={{page_obj.previous_page_number}}" aria-label="Page 2">Atras</a></li>
-              {% endif %}
-
-              <!-- Mostrar puntos suspensivos si la primera página no es la actual ni las próximas dos -->
-              {% if page_obj.number > 4 %}
-              <li class="ellipsis" aria-hidden="true"></li>
-              {% endif %}
-              
-              <!-- Mostrar un rango de páginas antes de la actual -->
-              {% for page_num in page_obj.paginator.page_range %}
-                {% if page_num >= page_obj.number|add:"-3" and page_num < page_obj.number %}
-                  <li><a href="?page={{ page_num }}" aria-label="Page {{ page_num }}">{{ page_num }}</a></li>
-                {% endif %}
+  <!-- Tabla de Empleados -->
+  <div class="table-container">
+      <table class="empleados-table">
+          <thead>
+              <tr>
+                  <th>ID</th>
+                  <th>Nombres</th>
+                  <th>Apellidos</th>
+                  <th>Departamento</th>
+                  <th>Acciones</th>
+              </tr>
+          </thead>
+          <tbody>
+              {% for e in empleadosAdmin %}
+              <tr>
+                  <td>{{ e.id }}</td>
+                  <td>{{ e.first_name }}</td>
+                  <td>{{ e.last_name }}</td>
+                  <td>{{ e.departamento.name }}</td>
+                  <td>
+                      <a href="{% url 'empleados_app:modificar_empleado' e.id %}" class="action-button edit">Editar</a>
+                      <a href="{% url 'empleados_app:borrado' e.id %}" class="action-button delete">Eliminar</a>
+                  </td>
+              </tr>
+              {% empty %}
+              <tr>
+                  <td colspan="5" class="no-results">No hay empleados registrados.</td>
+              </tr>
               {% endfor %}
+          </tbody>
+      </table>
+  </div>
 
-              <!-- Mostrar la página actual -->
-              <li class="current"><span class="show-for-sr">You're on page</span> {{ page_obj.number }}</li>
+  <!-- Paginación -->
+  {% if is_paginated %}
+  <div class="pagination">
+      <ul class="pagination-list">
+          <!-- Botón para ir a la primera página -->
+          <li><a href="?page=1" class="pagination-button">Primero</a></li>
 
-              <!-- Mostrar un rango de páginas después de la actual -->
-              {% for page_num in page_obj.paginator.page_range %}
-                {% if page_num > page_obj.number and page_num <= page_obj.number|add:"3" %}
-                  <li><a href="?page={{ page_num }}" aria-label="Page {{ page_num }}">{{ page_num }}</a></li>
-                {% endif %}
-              {% endfor %}
-
-              <!-- Mostrar puntos suspensivos si la última página no está en el rango visible -->
-              {% if page_obj.number < page_obj.paginator.num_pages|add:"-3" %}
-              <li class="ellipsis" aria-hidden="true"></li>
-              {% endif %}
-
-              <!--Boton para la siguiente pagina-->
-              {% if  page_obj.has_next %}
-              <li class="pagination-next"><a href="?page={{page_obj.next_page_number}}" aria-label="Page 2">Siguiente</a></li>
-              {% endif %}
-
-              <!--Boton para ir a la ultima pagina-->
-              <li><a href="?page={{ page_obj.paginator.num_pages }}" aria-label="Last page">Ultimo</a></li>
-            </ul>
-          </nav>
+          <!-- Botón para ir una página atrás -->
+          {% if page_obj.has_previous %}
+          <li><a href="?page={{ page_obj.previous_page_number }}" class="pagination-button">Atrás</a></li>
           {% endif %}
-        </div>
-    </div>
-</div>
 
+          <!-- Páginas cercanas a la actual -->
+          {% for page_num in page_obj.paginator.page_range %}
+              {% if page_num >= page_obj.number|add:"-3" and page_num <= page_obj.number|add:"3" %}
+                  <li><a href="?page={{ page_num }}" class="pagination-button {% if page_obj.number == page_num %}active{% endif %}">{{ page_num }}</a></li>
+              {% endif %}
+          {% endfor %}
 
+          <!-- Botón para ir a la siguiente página -->
+          {% if page_obj.has_next %}
+          <li><a href="?page={{ page_obj.next_page_number }}" class="pagination-button">Siguiente</a></li>
+          {% endif %}
+
+          <!-- Botón para ir a la última página -->
+          <li><a href="?page={{ page_obj.paginator.num_pages }}" class="pagination-button">Último</a></li>
+      </ul>
+  </div>
+  {% endif %}
+</section>
 {% endblock content %}
+
 
