@@ -2,6 +2,7 @@ from typing import Any
 from django.db.models.query import QuerySet
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import FormView
 from aplicaciones.empleados.models import Empleado 
@@ -18,24 +19,15 @@ class ListaDepartamento(ListView):
 class NewDepartamentoViews(FormView):
     template_name = 'departamento/new_departamento.html'
     form_class = NewDepartamentoFomrs
-    success_url = '/'
+    success_url = reverse_lazy('departamento_app:lista_departamento')
 
     def form_valid(self, form):
-        depa = Departamento(
+        # Crear el departamento con los datos del formulario
+        Departamento.objects.create(
             name=form.cleaned_data['departamento'],
             shor_name=form.cleaned_data['shortName']
         )
-        depa.save()
-
-        nombre = form.cleaned_data['nombre']
-        apellido = form.cleaned_data['apellidos']
-        Empleado.objects.create(
-            first_name= nombre,
-            last_name = apellido,
-            job = '1',
-            departamento=depa,
-        )
-        return super(NewDepartamentoViews,self).form_valid(form)
+        return super().form_valid(form)
 
     
     

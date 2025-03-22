@@ -15,3 +15,9 @@ class EmpleadoForm(forms.ModelForm):
         widgets = {
             'habilidades' : forms.CheckboxSelectMultiple()
         }
+
+    def clean_first_name(self):
+        first_name = self.cleaned_data['first_name']
+        if not first_name:
+            raise forms.ValidationError("El nombre es obligatorio.")
+        return first_name

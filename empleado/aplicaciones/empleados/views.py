@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import DeleteView, UpdateView, ListView, DetailView, CreateView, TemplateView
 from aplicaciones.departamento.models import Departamento
+from .forms import EmpleadoForm
 
 # models
 from .models import Empleado
@@ -116,13 +117,7 @@ class EmpleadoCreateView(CreateView):
 class EmpleadoUpdateView(UpdateView):
     template_name = "empleados/update.html"
     model = Empleado
-    fields = [
-        'first_name',
-        'last_name',
-        'job',
-        'departamento',
-        'habilidades',
-    ]
+    form_class = EmpleadoForm
     success_url = reverse_lazy('empleados_app:empleados_admin')
 
     def post(self, request, *args, **kwargs):

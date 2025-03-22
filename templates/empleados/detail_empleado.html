@@ -1,42 +1,50 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}
-    Empleado {{detalle.first_name}} {{detalle.last_name}}
-{% endblock title %}
-
 {% block content %}
 {% include 'includes/header.html' %}
-    <div class="grid-container">
-        <div class="grid-x grid-margin-x align-center">
-            <div class="cell large-4 card" style="width: 700px; margin-top: 30px;">
-                <div class="card-divider">
-                    {{detalle.get_job_display}}
-                </div>
+
+<section id="detalle-empleado">
+    <div class="profile-container">
+        <div class="profile-card">
+            <!-- Encabezado de la tarjeta -->
+            <div class="profile-header">
+                <h2>{{ detalle.job }}</h2>
+            </div>
+
+            <!-- Avatar del empleado -->
+            <div class="profile-avatar">
                 {% if detalle.avatar %}
-                    <img src="{{detalle.avatar.url}}">
+                    <img src="{{ detalle.avatar.url }}" alt="Avatar de {{ detalle.full_name }}">
                 {% else %}
-                    <img src="{% static 'img/DW1.jpg' %}">
+                    <img src="{% static 'img/DW1.jpg' %}" alt="Avatar por defecto">
                 {% endif %}
-                
-                <div class="card-section">
-                    <h4>{{detalle.full_name}}</h4>
-                    <p>{{detalle.first_name}}</p>
-                    <p>{{detalle.last_name}}</p>
-                    <p>{{detalle.departamento.shor_name}}</p>
-                    <p><span class="label">Habilidades:</span></p>
+            </div>
+
+            <!-- Información del empleado -->
+            <div class="profile-info">
+                <h3>{{ detalle.full_name }}</h3>
+                <p><strong>Nombre:</strong> {{ detalle.first_name }}</p>
+                <p><strong>Apellido:</strong> {{ detalle.last_name }}</p>
+                <p><strong>Departamento:</strong> {{ detalle.departamento.shor_name }}</p>
+
+                <!-- Habilidades -->
+                <div class="profile-skills">
+                    <h4>Habilidades</h4>
                     {% if detalle.habilidades.exists %}
-                        <ul class="vertical menu">
+                        <ul class="skills-list">
                             {% for h in detalle.habilidades.all %}
-                                <li>{{h.habilidad}}</li>
+                                <li>{{ h.habilidad }}</li>
                             {% endfor %}
                         </ul>
                     {% else %}
-                        <h6>No hay habilidades</h6>
+                        <p class="no-skills">No hay habilidades registradas.</p>
                     {% endif %}
                 </div>
             </div>
         </div>
     </div>
+</section>
 
 
 {% endblock content %}
+

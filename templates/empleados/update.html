@@ -8,49 +8,49 @@ Edita Empleado
 
 {% block content %}
 {% include 'includes/header.html' %}
-    
-<div class="grid-container">
-    <div class="grid-x">
-        <h1 class="cell">Modificar Datos de Empleado</h1>
-        <div class="cell">
-            <form class="grid-x grid-margin-x callout" method="post"> {% csrf_token %}
-                <div class="medium-6 cell">
-                    <label>Nombres:
-                        {{form.first_name}}
-                    </label>
-                </div>
-                <div class="medium-6 cell">
-                    <label>Apellidos:
-                        {{form.last_name}}
-                    </label>
-                </div>
-                <div class="medium-6 cell">
-                    <label>Trabajo:
-                        {{form.job}}
-                    </label>
-                </div>
-                <div class="medium-6 cell">
-                    <label>Departamento:
-                        {{form.departamento}}
-                    </label>
-                </div>
-                <div class="medium-6 cell">
-                    <label>Habilidades:
-                        {{form.habilidades}}
-                    </label>
-                </div>
-                <div class="cell">
-                    <button type="submit" class=" button">Enviar</button>
-                </div>
-                
-            </form>
-        </div>
-    </div>
-    
-</div>
-{% endblock content %}
-    
-    
 
+<section id="editar-empleado">
+    <h1>Modificar Datos de Empleado</h1>
+
+    <div class="form-container">
+        <form method="post" class="editar-form"> {% csrf_token %}
+            <!-- Campo: Nombres -->
+            <div class="form-group">
+                <label for="id_first_name">Nombres:</label>
+                {{ form.first_name }}
+            </div>
+
+            <!-- Campo: Apellidos -->
+            <div class="form-group">
+                <label for="id_last_name">Apellidos:</label>
+                {{ form.last_name }}
+            </div>
+
+            <!-- Campo: Trabajo -->
+            <div class="form-group">
+                <label for="id_job">Trabajo:</label>
+                {{ form.job }}
+            </div>
+
+            <!-- Campo: Departamento -->
+            <div class="form-group">
+                <label for="id_departamento">Departamento:</label>
+                {{ form.departamento }}
+            </div>
+
+            <!-- Campo: Habilidades -->
+            <div class="form-group">
+                <label for="id_habilidades">Habilidades:</label>
+                {{ form.habilidades }}
+            </div>
+
+            <!-- Botón de Enviar -->
+            <div class="form-group">
+                <button type="submit" class="submit-button">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock content %}
 
 

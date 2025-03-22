@@ -336,9 +336,6 @@ h1, h3 {
 }
 
 
-/* Estilos generales */
-
-
 /* Tabla de empleados */
 
 .empleados-table {
@@ -398,4 +395,278 @@ h1, h3 {
 
 .action-button.delete:hover {
     background-color: #c82333; /* Rojo oscuro al pasar el mouse */
+}
+
+
+
+/* Estilos generales para el perfil */
+#detalle-empleado {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+}
+
+.profile-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 700px;
+}
+
+.profile-header {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.profile-avatar {
+    text-align: center;
+    padding: 20px;
+}
+
+.profile-avatar img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid gray;
+}
+
+.profile-info {
+    padding: 20px;
+    text-align: center;
+}
+
+.profile-info h3 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.profile-info p {
+    color: #555;
+    margin: 5px 0;
+}
+
+.profile-skills {
+    margin-top: 20px;
+}
+
+.profile-skills h4 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.skills-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.skills-list li {
+    background-color: #f1f1f1;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #333;
+}
+
+.no-skills {
+    color: #777;
+    font-style: italic;
+}
+
+
+/* Estilos generales para la sección de edición */
+#editar-empleado {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+#editar-empleado h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Contenedor del formulario */
+.form-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* Grupos de campos del formulario */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea,
+.form-group input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.form-group select {
+    appearance: none; /* Elimina el estilo por defecto del select */
+    background-color: white;
+}
+
+.form-group textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+/* Botón de enviar */
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos generales para la sección de eliminación */
+#eliminar-empleado {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+#eliminar-empleado h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Contenedor de la confirmación */
+.confirmacion-container {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+}
+
+/* Mensaje de confirmación */
+.confirmacion-mensaje {
+    margin-bottom: 20px;
+}
+
+.confirmacion-mensaje h5 {
+    color: #333;
+    margin-bottom: 10px;
+    font-size:35px ;
+}
+
+.confirmacion-mensaje p {
+    color: #555;
+    margin: 5px 0;
+}
+
+.confirmacion-mensaje strong {
+    color: #333;
+}
+
+/* Botón de confirmar */
+.confirmar-button {
+    padding: 10px 20px;
+    background-color: #dc3545; /* Rojo para eliminar */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.confirmar-button:hover {
+    background-color: #c82333; /* Rojo oscuro al pasar el mouse */
+}
+
+
+/* Estilos generales para la sección de agregar departamento */
+#agregar-departamento {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+#agregar-departamento h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+/* Título del formulario */
+.agregar-form h3 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+/* Botón de guardar */
+.agregar-submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745; /* Verde para guardar */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.agregar-submit-button:hover {
+    background-color: #218838; /* Verde oscuro al pasar el mouse */
+}
+
+/* Estilos generales para la sección de agregar empleado */
+#agregar-empleado {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+#agregar-empleado h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
 }

@@ -6,31 +6,34 @@
 
 {% block content %}
 {% include 'includes/header.html' %}
-<div class="grid-container">
-    <div class="grid-x">
-        <h1 class="cell">Registrar nuevo Departamento</h1>
-        <form class="cell callout grid-x grid-margin-x" method="POST" enctype="multipart/form-data"> {% csrf_token %}
-            <h3 class="cell">Datos Departamento</h3>
-            <div class="medium-6 cell">
-                <label>
-                    Nombre del Departamento:
-                    {{form.departamento}}
-                </label>
-            </div>
-            <div class="medium-6 cell">
-                <label>
-                    Nombre corto:
-                    {{form.shortName}}
-                </label>
-            </div>
-            <button type="submit" class="button" style="border-radius: 100px;" >Guardar</button>
+<section id="agregar-departamento">
+    <h1>Registrar Nuevo Departamento</h1>
 
+    <div class="form-container">
+        <form method="POST" enctype="multipart/form-data" class="agregar-form"> {% csrf_token %}
+            <h3>Datos del Departamento</h3>
+
+            <!-- Campo: Nombre del Departamento -->
+            <div class="form-group">
+                <label for="id_departamento">Nombre del Departamento:</label>
+                {{ form.departamento }}
+            </div>
+
+            <!-- Campo: Nombre Corto -->
+            <div class="form-group">
+                <label for="id_shortName">Nombre Corto:</label>
+                {{ form.shortName }}
+            </div>
+
+            <!-- Botón de Guardar -->
+            <div class="form-group">
+                <button type="submit" class="agregar-submit-button">Guardar</button>
+            </div>
         </form>
     </div>
-</div>    
+</section>
 
 
 {% endblock content %}
         
-
 
