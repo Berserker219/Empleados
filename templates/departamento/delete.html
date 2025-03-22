@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'includes/header.html' %}
+<section id="eliminar-empleado">
+    <h1>Eliminar Departamento: {{ object.name }}</h1>
+
+    <div class="confirmacion-container">
+        <form method="POST" class="confirmacion-form"> {% csrf_token %}
+            <div class="confirmacion-mensaje">
+                <h5>¿Desea eliminar el Departamento de <strong>{{ object.name }}</strong>?</h5>
+                <p>Confirme que desea eliminar a <strong>{{ object.name }}</strong>.</p>
+            </div>
+            <button type="submit" class="confirmar-button">Confirmar</button>
+        </form>
+    </div>
+</section>
+
+{% endblock content %}

@@ -3,7 +3,7 @@ from django.db.models.query import QuerySet
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import ListView
+from django.views.generic import ListView, DeleteView
 from django.views.generic.edit import FormView
 from aplicaciones.empleados.models import Empleado 
 from .models import Departamento
@@ -29,5 +29,12 @@ class NewDepartamentoViews(FormView):
         )
         return super().form_valid(form)
 
-    
-    
+class DeleteDepartamentoViews(DeleteView):
+    model = Departamento
+    template_name = 'departamento/delete.html'
+    success_url = reverse_lazy('departamento_app:lista_departamento')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['departamento'] = Departamento.objects.get(id=self.kwargs['pk'])
+        return context

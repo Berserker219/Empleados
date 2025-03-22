@@ -22,6 +22,7 @@
                     <td>{{ e.shor_name }}</td>
                     <td>
                         <a href="{% url 'empleados_app:area_empleado' e.name %}" class="action-button view">Ver Empleados</a>
+                        <a href="{% url 'departamento_app:borrar_departamento' e.id %}" class="action-button delete">Eliminar</a>
                     </td>
                 </tr>
                 {% empty %}
