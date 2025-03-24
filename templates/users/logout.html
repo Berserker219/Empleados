@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include 'includes/header.html' %}
+<section id="autenticacion">
+    <h2>Has cerrado sesión</h2>
+    <div class="form-container">
+        <p>Gracias por usar nuestra aplicación. Esperamos verte pronto.</p>
+        <a href="{% url 'login' %}" class="submit-button" style="display: block; text-align: center;">Iniciar Sesión nuevamente</a>
+    </div>
+</section>
+{% endblock %}
+

@@ -7,9 +7,12 @@ from django.urls import reverse_lazy
 from django.views.generic import DeleteView, UpdateView, ListView, DetailView, CreateView, TemplateView
 from aplicaciones.departamento.models import Departamento
 from .forms import EmpleadoForm
+from django.core.exceptions import PermissionDenied
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # models
 from .models import Empleado
+# forms
 from .forms import EmpleadoForm
 
 # Vista que ccarga la pagina de inicio
@@ -17,7 +20,7 @@ class InicioViews(TemplateView):
     template_name = 'inicio.html'
 
 # Lista de todos los Empleados
-class ListAllEmpleados(ListView):
+class ListAllEmpleados(LoginRequiredMixin,ListView):
     template_name = 'empleados/list_all.html'
     paginate_by = 4
     ordering = 'first_name'
@@ -34,7 +37,7 @@ class ListAllEmpleados(ListView):
     
 
 # Lista de todos los Empleados en Admin
-class ListEmpleadosAdmin(ListView):
+class ListEmpleadosAdmin(LoginRequiredMixin,ListView):
     template_name = 'empleados/lista_empleados.html'
     paginate_by = 10
     ordering = 'first_name'
@@ -51,7 +54,7 @@ class ListEmpleadosAdmin(ListView):
         return lista
 
 # Lista de Empleados por Area
-class ListByAreaEmpleado(ListView):
+class ListByAreaEmpleado(LoginRequiredMixin,ListView):
     template_name = 'empleados/list_by_area.html'
     context_object_name = 'empleado'
 
@@ -64,7 +67,7 @@ class ListByAreaEmpleado(ListView):
 
 
 # Busqueda de Empleados
-class ListEmpleadosByKword(ListView):
+class ListEmpleadosByKword(LoginRequiredMixin,ListView):
     template_name = 'empleados/by_kword.html'
     context_object_name = "empleados"
 
@@ -76,7 +79,7 @@ class ListEmpleadosByKword(ListView):
         return lista
 
 # Habilidades de Empleado
-class ListHabilidadesEmpleado(ListView):
+class ListHabilidadesEmpleado(LoginRequiredMixin,ListView):
     template_name = 'empleados/habilidades.html'
     context_object_name = "habilidades"
 
@@ -85,7 +88,7 @@ class ListHabilidadesEmpleado(ListView):
         return empleado.habilidades.all()
 
 # Detalles de Empleado
-class EmpleadoDetailViews(DetailView):
+class EmpleadoDetailViews(LoginRequiredMixin,DetailView):
     model = Empleado
     template_name = 'empleados/detail_empleado.html'
     context_object_name = 'detalle'
@@ -96,11 +99,11 @@ class EmpleadoDetailViews(DetailView):
         return context
     
 
-class SuccesView(TemplateView):
+class SuccesView(LoginRequiredMixin,TemplateView):
     template_name = "empleados/success.html"
 
 # Crear Empleado
-class EmpleadoCreateView(CreateView):
+class EmpleadoCreateView(LoginRequiredMixin,CreateView):
     template_name = 'empleados/add.html'
     model = Empleado
     form_class = EmpleadoForm
@@ -112,9 +115,10 @@ class EmpleadoCreateView(CreateView):
         empleado.full_name = empleado.first_name + ' ' + empleado.last_name
         empleado.save()
         return super(EmpleadoCreateView,self).form_valid(form)
+
     
 # Actualizar empleado
-class EmpleadoUpdateView(UpdateView):
+class EmpleadoUpdateView(LoginRequiredMixin,UpdateView):
     template_name = "empleados/update.html"
     model = Empleado
     form_class = EmpleadoForm
@@ -128,7 +132,7 @@ class EmpleadoUpdateView(UpdateView):
         return super(EmpleadoUpdateView, self).form_valid(form)
 
 # Elimar empleado
-class EmpleadoDeleteView(DeleteView):
+class EmpleadoDeleteView(LoginRequiredMixin,DeleteView):
     template_name = 'empleados/delete.html'
     model = Empleado
     success_url = reverse_lazy('empleados_app:empleados_admin')

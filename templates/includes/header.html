@@ -9,6 +9,13 @@
             <li><a href="{% url 'empleados_app:empleados_admin' %}">Administrar</a></li>
             <li><a href="{% url 'departamento_app:nuevo_departamento' %}">Agregar Departamento</a></li>
             <li><a href="{% url 'empleados_app:empleado_add' %}">Agregar Empleado</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'users:logout' %}">Cerrar Sesión</a></li>
+            {% else %}
+                <li><a href="{% url 'users:login' %}">Iniciar Sesion</a></li>
+                <li><a href="{% url 'users:register' %}">Registrarse</a></li>
+            {% endif %}
+
         </ul>
     </nav>
 </header>

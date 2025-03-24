@@ -8,15 +8,15 @@ from django.views.generic.edit import FormView
 from aplicaciones.empleados.models import Empleado 
 from .models import Departamento
 from .forms import NewDepartamentoFomrs
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-
-class ListaDepartamento(ListView):
+class ListaDepartamento(LoginRequiredMixin,ListView):
     model= Departamento
     template_name = 'departamento/lista_departamento.html'
     context_object_name = 'lista_depa'
     
 
-class NewDepartamentoViews(FormView):
+class NewDepartamentoViews(LoginRequiredMixin,FormView):
     template_name = 'departamento/new_departamento.html'
     form_class = NewDepartamentoFomrs
     success_url = reverse_lazy('departamento_app:lista_departamento')
@@ -29,7 +29,7 @@ class NewDepartamentoViews(FormView):
         )
         return super().form_valid(form)
 
-class DeleteDepartamentoViews(DeleteView):
+class DeleteDepartamentoViews(LoginRequiredMixin,DeleteView):
     model = Departamento
     template_name = 'departamento/delete.html'
     success_url = reverse_lazy('departamento_app:lista_departamento')
