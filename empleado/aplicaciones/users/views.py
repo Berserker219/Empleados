@@ -6,10 +6,11 @@ from django.contrib.auth import login, authenticate, logout
 from .forms import CustomUserCreationForm, LoginForm
 
 
+
 class RegisterView(CreateView):
     form_class = CustomUserCreationForm
     template_name = 'users/register.html'
-    success_url = reverse_lazy('inicio')  # Redirige a la página de inicio después del registro
+    success_url = reverse_lazy('empleados_app:inicio')  # Redirige a la página de inicio después del registro
 
     def form_valid(self, form):
         response = super().form_valid(form)
@@ -22,7 +23,7 @@ class RegisterView(CreateView):
 class LoginView(FormView):
     form_class = LoginForm
     template_name = 'users/login.html'
-    success_url = reverse_lazy('inicio')  # Redirige a la página de inicio después del login
+    success_url = reverse_lazy('empleados_app:inicio')  # Redirige a la página de inicio después del login
 
     def form_valid(self, form):
         username = form.cleaned_data['username']
@@ -34,7 +35,7 @@ class LoginView(FormView):
     
 
 class LogoutView(RedirectView):
-    url = reverse_lazy('inicio')  # Redirige a la página de inicio después del logout
+    url = reverse_lazy('empleados_app:inicio')  # Redirige a la página de inicio después del logout
     redirect_authenticated_user = True  # Redirige al usuario a la página de inicio si ya está autenticado
     def get(self, request, *args, **kwargs):
         logout(request)

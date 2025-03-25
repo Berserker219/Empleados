@@ -120,3 +120,6 @@ AUTH_USER_MODEL = 'users.CustomUser'
 LOGIN_URL = 'users:login'  # Redirige a la página de inicio de sesión
 
 LOGOUT_REDIRECT_URL = '/login/'
+
+LOGIN_REDIRECT_URL = 'empleados_app:inicio'
+LOGOUT_REDIRECT_URL = 'empleados_app:inicio'

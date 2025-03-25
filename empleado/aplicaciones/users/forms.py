@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser
 from django.contrib.auth import authenticate
+from django.utils.translation import gettext_lazy as _
 
 
 # Formulario de registro de usuario
@@ -24,6 +25,23 @@ class CustomUserCreationForm(UserCreationForm):
             'email': forms.EmailInput(attrs={'class': 'form-control'}),
             'password1': forms.PasswordInput(attrs={'class': 'form-control'}),
             'password2': forms.PasswordInput(attrs={'class': 'form-control'}),
+        }
+        error_messages = {
+            'username': {
+                'required': _("Este campo es obligatorio."),
+                'unique': _("Este nombre de usuario ya está en uso."),
+            },
+            'email': {
+                'required': _("Este campo es obligatorio."),
+                'invalid': _("Introduce una dirección de correo electrónico válida."),
+            },
+            'password1': {
+                'required': _("Este campo es obligatorio."),
+            },
+            'password2': {
+                'required': _("Este campo es obligatorio."),
+                'password_mismatch': _("Las contraseñas no coinciden."),
+            },
         }
 
 # Formulario de inicio de sesión
