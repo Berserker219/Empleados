@@ -123,3 +123,4 @@ LOGOUT_REDIRECT_URL = '/login/'
 
 LOGIN_REDIRECT_URL = 'empleados_app:inicio'
 LOGOUT_REDIRECT_URL = 'empleados_app:inicio'
+
