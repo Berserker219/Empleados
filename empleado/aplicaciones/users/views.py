@@ -6,7 +6,7 @@ from django.contrib.auth import login, authenticate, logout
 from .forms import CustomUserCreationForm, LoginForm
 
 
-
+# clase que registra un nuevo usuario
 class RegisterView(CreateView):
     form_class = CustomUserCreationForm
     template_name = 'users/register.html'
@@ -19,7 +19,7 @@ class RegisterView(CreateView):
         return response
     
 
-
+# clase que maneja el inicio de sesión
 class LoginView(FormView):
     form_class = LoginForm
     template_name = 'users/login.html'
@@ -33,7 +33,7 @@ class LoginView(FormView):
             login(self.request, user)
         return super().form_valid(form)
     
-
+# clase que maneja el cierre de sesión
 class LogoutView(RedirectView):
     url = reverse_lazy('empleados_app:inicio')  # Redirige a la página de inicio después del logout
     redirect_authenticated_user = True  # Redirige al usuario a la página de inicio si ya está autenticado

@@ -98,7 +98,7 @@ class EmpleadoDetailViews(LoginRequiredMixin,DetailView):
         context['titulo'] = 'Empleado del mes'
         return context
     
-
+# clase que muestra una vista de éxito
 class SuccesView(LoginRequiredMixin,TemplateView):
     template_name = "empleados/success.html"
 
