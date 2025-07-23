@@ -2,7 +2,6 @@
 
 
 {% block content %}
-{% include "includes/header.html" %}
 
 <section id="lista-empleados">
   <h1>Administrar Empleados</h1>
@@ -34,10 +33,7 @@
                   <td>{{ e.first_name }}</td>
                   <td>{{ e.last_name }}</td>
                   <td>{{ e.departamento.name }}</td>
-                  <td>
-                      <a href="{% url 'empleados_app:modificar_empleado' e.id %}" class="action-button edit">Editar</a>
-                      <a href="{% url 'empleados_app:borrado' e.id %}" class="action-button delete">Eliminar</a>
-                  </td>
+        
               </tr>
               {% empty %}
               <tr>

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="dashboard-wrapper">
+  <!-- Menú lateral -->
+  <aside class="dashboard-sidebar">
+    <h3>Informes</h3>
+    <ul class="sidebar-menu">
+      <li><a href="#" data-grafica="general">📊 Informe General</a></li>
+      <li><a href="#" data-grafica="departamento">🏢 Por Departamento</a></li>
+      <li><a href="#" data-grafica="genero">👥 Por Género</a></li>
+      <li><a href="#" data-grafica="ingresos">📈 Ingresos por Fecha</a></li>
+    </ul>
+  </aside>
+
+  <!-- Contenido de gráficas -->
+  <section class="dashboard-content">
+    <div id="grafica-general" class="grafica-panel active">
+      <h2>Informe General</h2>
+      <canvas id="graficaEmpleadosPorDepartamento"></canvas>
+    </div>
+    
+    <div id="grafica-departamento" class="grafica-panel">
+      <h2>Distribución por Departamento</h2>
+      <canvas id="graficaDepartamento"></canvas>
+    </div>
+
+    <div id="grafica-genero" class="grafica-panel">
+      <h2>Empleados por Género</h2>
+      <canvas id="graficaGenero"></canvas>
+    </div>
+
+    <div id="grafica-ingresos" class="grafica-panel">
+      <h2>Altas de Empleados por Fecha</h2>
+      <canvas id="graficaIngresos"></canvas>
+    </div>
+  </section>
+</section>
+
+<!-- Datos dinámicos para JS -->
+{% block extra_scripts %}
+  <script>
+    window.chartLabels = JSON.parse('{{ labels|escapejs }}');
+    window.chartValues = JSON.parse('{{ valores|escapejs }}');
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{% static 'js/dashboard.js' %}"></script>
+{% endblock %}
+{% endblock %}

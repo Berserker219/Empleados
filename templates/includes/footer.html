@@ -1,0 +1,34 @@
+<footer class="advanced-footer">
+  <div class="footer-content">
+
+    <!-- Información general -->
+    <div class="footer-section company-info">
+      <h3>Mi Empresa</h3>
+      <p>Registrando empleados desde el corazón del sistema. Plataforma desarrollada con Django, diseño responsivo y experiencia intuitiva.</p>
+      <p>&copy; {{ year }} Todos los derechos reservados.</p>
+    </div>
+
+    <!-- Navegación rápida -->
+    <div class="footer-section quick-links">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="{% url 'empleados_app:inicio' %}">Inicio</a></li>
+        <li><a href="{% url 'empleados_app:empleados_all' %}">Empleados</a></li>
+        <li><a href="{% url 'departamento_app:lista_departamento' %}">Departamentos</a></li>
+        <li><a href="#">Privacidad</a></li>
+      </ul>
+    </div>
+
+    <!-- Redes sociales -->
+    <div class="footer-section social-media">
+      <h4>Conecta con nosotros</h4>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+      </div>
+    </div>
+
+  </div>
+</footer>

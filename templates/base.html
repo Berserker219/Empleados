@@ -5,14 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APP Empleados</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">    
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
 </head>
 <body>
-    
+    {% include 'includes/header.html' %}
     <main>
         {% block content %}  {% endblock content %}
-    </main>    
+    </main>
+    {% include 'includes/footer.html' %}    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/dashboard.js' %}"></script>
+    {% block extra_scripts %}{% endblock %}
+
 </body>
 </html>
 

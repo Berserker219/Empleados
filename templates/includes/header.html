@@ -4,11 +4,9 @@
     <nav>
         <ul>
             <li><a href="{% url 'empleados_app:inicio' %}">Inicio</a></li>
-            <li><a href="{% url 'empleados_app:empleados_all' %}">Lista de Empleados</a></li>
+            <li><a href="{% url 'empleados_app:empleados_all' %}">Empleados</a></li>
             <li><a href="{% url 'departamento_app:lista_departamento' %}">Departamentos</a></li>
-            <li><a href="{% url 'empleados_app:empleados_admin' %}">Administrar</a></li>
-            <li><a href="{% url 'departamento_app:nuevo_departamento' %}">Agregar Departamento</a></li>
-            <li><a href="{% url 'empleados_app:empleado_add' %}">Agregar Empleado</a></li>
+            <li><a href="{% url 'informes:dashboard_general' %}">Informe</a></li>
             {% if user.is_authenticated %}
                 <li><a href="{% url 'users:logout' %}">Cerrar Sesión</a></li>
             {% else %}

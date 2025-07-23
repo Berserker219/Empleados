@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% include "includes/header.html" %}
 
 <section id="lista-empleados">
-  <h1>Lista de Empleados</h1>
+
+  <div class="title-container">
+    <h1>Lista de Empleados</h1>
+    <a href="{% url 'empleados_app:empleado_add' %}" class="add-icon" title="Agregar empleado">
+      <i class="fas fa-user-plus"></i>
+    </a>
+  </div>
 
   <!-- Busqueda de Empleados -->
   <form method="GET" class="search-form">
@@ -35,6 +40,8 @@
                   <td>{{ e.departamento.name }}</td>
                   <td>
                       <a href="{% url 'empleados_app:detalle_empleado' e.id %}" class="action-button view">Ver</a>
+                      <a href="{% url 'empleados_app:modificar_empleado' e.id %}" class="action-button edit">Editar</a>
+                      <a href="{% url 'empleados_app:borrado' e.id %}" class="action-button delete">Eliminar</a>
                   </td>
               </tr>
               {% endfor %}

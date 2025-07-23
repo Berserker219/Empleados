@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% include 'includes/header.html' %}
 <section id="lista-departamentos">
-    <h1>Departamentos de la Empresa</h1>
-
+    <div class="title-container">
+        <h1>Departamentos de la Empresa</h1>
+        <a href="{% url 'departamento_app:nuevo_departamento' %}" class="add-icon" title="Agregar departamento">
+        <i class="fas fa-building-circle-arrow-right"></i>
+        </a>
+    </div>
     <!-- Tabla de Departamentos -->
     <div class="table-container">
         <table class="departamentos-table">
