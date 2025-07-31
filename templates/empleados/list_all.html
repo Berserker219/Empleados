@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -82,3 +83,7 @@
 
 {% endblock content %}
 
+
+{% block extra_scripts %}
+<script src="{% static 'js/buscador_empleado.js' %}"></script>
+{% endblock %}

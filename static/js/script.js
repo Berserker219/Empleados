@@ -1,41 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
-    const buscadorEmpleados = document.getElementById('buscador-empleados');
-    const buscadorEmpleadosAdmin = document.getElementById('buscador-empleados-admin');
 
-    if (buscadorEmpleados) {
-        buscadorEmpleados.addEventListener('input', function() {
-            const filtro = this.value.toLowerCase();
-            const filas = document.querySelectorAll('#lista-empleados tbody tr');
-
-            filas.forEach(fila => {
-                const nombre = fila.querySelector('td:nth-child(2)').textContent.toLowerCase();
-                const apellido = fila.querySelector('td:nth-child(3)').textContent.toLowerCase();
-                if (nombre.includes(filtro) || apellido.includes(filtro)) {
-                    fila.style.display = '';
-                } else {
-                    fila.style.display = 'none';
-                }
-            });
-        });
-    }
-
-    if (buscadorEmpleadosAdmin) {
-        buscadorEmpleadosAdmin.addEventListener('input', function() {
-            const filtro = this.value.toLowerCase();
-            const filas = document.querySelectorAll('#administrar tbody tr');
-
-            filas.forEach(fila => {
-                const nombre = fila.querySelector('td:nth-child(2)').textContent.toLowerCase();
-                const apellido = fila.querySelector('td:nth-child(3)').textContent.toLowerCase();
-                if (nombre.includes(filtro) || apellido.includes(filtro)) {
-                    fila.style.display = '';
-                } else {
-                    fila.style.display = 'none';
-                }
-            });
-        });
-    }
-});
 
 document.addEventListener('DOMContentLoaded', function() {
     let currentIndex = 0;

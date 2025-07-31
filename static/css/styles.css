@@ -38,7 +38,6 @@ nav ul li a {
 
 nav ul li a:hover{
     color: white;
-    font-size: 1.1rem;
 }
 
 section {
@@ -252,6 +251,9 @@ h1, h3 {
 .action-button.view:hover {
     background-color: #218838;
 }
+
+/* Estilo para informes*/
+
 
 /* Estilos generales  empleados*/
  #lista-empleados {

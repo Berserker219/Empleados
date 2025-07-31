@@ -2,14 +2,56 @@
 {% load static %}
 
 {% block content %}
-<aside class="menu-lateral">
-  <h3>Tipos de Informe</h3>
-  <ul>
-    <li><a href="#">Empleados por Departamento</a></li>
-    <li><a href="#">Distribución por Género</a></li>
-    <li><a href="#">Antigüedad en la empresa</a></li>
-    <li><a href="#">Ingresos Mensuales</a></li>
-  </ul>
-</aside>
+<div class="dashboard-container">
+  <aside class="menu-lateral">
+    <h3>Informes</h3>
+    <ul>
+      <li><a href="#" class="active" data-chart="empleados-departamento">Empleados por Depto.</a></li>
+      <li><a href="#" data-chart="distribucion-genero">Distribución por Género</a></li>
+      <li><a href="#" data-chart="salario-departamento">Salario Promedio</a></li>
+      <li><a href="#" data-chart="antiguedad-empleados">Antigüedad</a></li>
+    </ul>
+  </aside>
 
+  <div class="graficos-container">
+    <!-- Gráfica principal -->
+    <div class="grafico-principal">
+      <div class="chart-loading" id="chartLoader">
+        <div class="loader"></div>
+      </div>
+      <div id="chartError" class="error-message" style="display: none;"></div>
+      <canvas id="mainChart"></canvas>
+    </div>
+    
+    <!-- Mini gráficas -->
+    <div class="mini-graficos">
+      <div class="mini-grafico">
+        <canvas id="miniChart1"></canvas>
+      </div>
+      <div class="mini-grafico">
+        <canvas id="miniChart2"></canvas>
+      </div>
+      <div class="mini-grafico">
+        <canvas id="miniChart3"></canvas>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Datos para gráficas -->
+  <div id="chartData" 
+       data-departamentos='{{ departamentos }}'
+       data-conteo-dep='{{ conteo_dep }}'
+       data-generos='{{ generos }}'
+       data-conteo-genero='{{ conteo_genero }}'
+       data-deptos-salario='{{ deptos_salario }}'
+       data-salarios-prom='{{ salarios_prom }}'
+       data-rangos-antiguedad='{{ rangos_antiguedad }}'
+       data-conteo-antiguedad='{{ conteo_antiguedad }}'
+       style="display: none;">
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{% static 'js/dashboard.js' %}"></script>
 {% endblock %}

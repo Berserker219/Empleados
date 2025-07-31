@@ -22,9 +22,10 @@ class InicioViews(TemplateView):
 # Lista de todos los Empleados
 class ListAllEmpleados(LoginRequiredMixin,ListView):
     template_name = 'empleados/list_all.html'
-    paginate_by = 4
+    paginate_by = 10
     ordering = 'first_name'
     context_object_name = 'lista_empleados'
+    model = Empleado
 
     def get_queryset(self):
         palabra_clave = self.request.GET.get('kword','')
@@ -36,22 +37,6 @@ class ListAllEmpleados(LoginRequiredMixin,ListView):
         return lista
     
 
-# Lista de todos los Empleados en Admin
-class ListEmpleadosAdmin(LoginRequiredMixin,ListView):
-    template_name = 'empleados/lista_empleados.html'
-    paginate_by = 10
-    ordering = 'first_name'
-    context_object_name = 'empleadosAdmin'
-    model = Empleado
-
-    def get_queryset(self):
-        palabra_clave = self.request.GET.get('kword','')
-        print(f"Palabra clave recibida: {palabra_clave}")
-        lista =  Empleado.objects.filter(
-            full_name__icontains=palabra_clave
-        ).order_by('first_name')
-        print(f"Resultados encontrados: {lista.count()}")
-        return lista
 
 # Lista de Empleados por Area
 class ListByAreaEmpleado(LoginRequiredMixin,ListView):
@@ -78,14 +63,15 @@ class ListEmpleadosByKword(LoginRequiredMixin,ListView):
         )
         return lista
 
-# Habilidades de Empleado
-class ListHabilidadesEmpleado(LoginRequiredMixin,ListView):
-    template_name = 'empleados/habilidades.html'
-    context_object_name = "habilidades"
 
-    def get_queryset(self):
-        empleado = Empleado.objects.get(id=6)
-        return empleado.habilidades.all()
+# Habilidades de Empleado BORRAR
+# class ListHabilidadesEmpleado(LoginRequiredMixin,ListView):
+#     template_name = 'empleados/habilidades.html'
+#     context_object_name = "habilidades"
+
+#     def get_queryset(self):
+#         empleado = Empleado.objects.get(id=6)
+#         return empleado.habilidades.all()
 
 # Detalles de Empleado
 class EmpleadoDetailViews(LoginRequiredMixin,DetailView):

@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
+    <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     {% include 'includes/header.html' %}
@@ -16,9 +17,7 @@
         {% block content %}  {% endblock content %}
     </main>
     {% include 'includes/footer.html' %}    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{% static 'js/script.js' %}"></script>
-    <script src="{% static 'js/dashboard.js' %}"></script>
     {% block extra_scripts %}{% endblock %}
 
 </body>
