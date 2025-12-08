@@ -1,13 +1,21 @@
 /* Estilo generales*/
+
+/*Estilos para header*/
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
-/*Estilos para header*/
 
-header {
+#mainContent {
+    flex: 1;
+}
+
+/* header {
     background-color: #333;
     color: #00cec9;
     padding: 10px 20px;
@@ -38,7 +46,10 @@ nav ul li a {
 
 nav ul li a:hover{
     color: white;
-}
+} */
+
+
+
 
 section {
     padding: 20px;
@@ -776,12 +787,12 @@ h1, h3 {
 /*Estilo del footer*/
 
 .advanced-footer {
-  background-color: #1f1f2f;
-  color: #f0f0f0;
-  padding: 2rem;
-  font-family: 'Segoe UI', sans-serif;
+    background-color: #1f1f2f;
+    color: #f0f0f0;
+    padding: 2rem;
+    font-family: 'Segoe UI', sans-serif;
+    margin-top: auto; /* Empuja el footer al final */
 }
-
 .footer-content {
   display: flex;
   flex-wrap: wrap;
@@ -835,4 +846,22 @@ h1, h3 {
 .social-icons a:hover {
   transform: scale(1.2);
   color: #00cec9;
+}
+
+
+
+/* Asegurar que el contenido no quede detrás del sidebar en móviles */
+@media (max-width: 991px) {
+    body {
+        overflow-x: hidden; /* Prevenir scroll horizontal */
+    }
+    
+    #mainContent, footer {
+        transition: transform 0.3s ease;
+    }
+    
+    .sidebar.active ~ #mainContent,
+    .sidebar.active ~ footer {
+        transform: translateX(280px);
+    }
 }

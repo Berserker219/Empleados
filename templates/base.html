@@ -1,25 +1,97 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>APP Empleados</title>
+    
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    {% include 'includes/header.html' %}
-    <main>
-        {% block content %}  {% endblock content %}
+    
+        <!-- Header -->
+        
+    <header class="main-header">
+        <!-- Celda 1: Hamburguesa -->
+        <button class="hamburger-btn" id="hamburgerBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <!-- Celda 2: Título -->
+        <h1>App de Empleados</h1>
+        
+        <!-- Celda 3: Usuario -->
+        {% if user.is_authenticated %}
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span>{{ user.username }}</span>
+            </div>
+        {% else %}
+            <div class="user-info">
+                <a href="{% url 'users:login' %}">
+                    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                </a>
+            </div>
+        {% endif %}
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <button class="close-btn" id="closeBtn">
+            <i class="fas fa-times"></i>
+        </button>
+        <nav class="sidebar-nav">
+            <ul>
+                <li><a href="{% url 'empleados_app:inicio' %}" 
+                       class="{% if request.resolver_match.url_name == 'inicio' %}active{% endif %}">
+                    <i class="fas fa-home"></i> Inicio
+                </a></li>
+                <li><a href="{% url 'empleados_app:empleados_all' %}"
+                       class="{% if request.resolver_match.url_name == 'empleados_all' %}active{% endif %}">
+                    <i class="fas fa-users"></i> Empleados
+                </a></li>
+                <li><a href="{% url 'departamento_app:lista_departamento' %}"
+                       class="{% if request.resolver_match.url_name == 'lista_departamento' %}active{% endif %}">
+                    <i class="fas fa-building"></i> Departamentos
+                </a></li>
+                <li><a href="{% url 'informes:dashboard_general' %}"
+                       class="{% if request.resolver_match.url_name == 'dashboard_general' %}active{% endif %}">
+                    <i class="fas fa-chart-bar"></i> Informes
+                </a></li>
+                
+                {% if user.is_authenticated %}
+                    <li><a href="{% url 'users:logout' %}">
+                        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                    </a></li>
+                {% else %}
+                    <li><a href="{% url 'users:login' %}">
+                        <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                    </a></li>
+                    <li><a href="{% url 'users:register' %}">
+                        <i class="fas fa-user-plus"></i> Registrarse
+                    </a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main id="mainContent">
+        {% block content %}{% endblock content %}
     </main>
-    {% include 'includes/footer.html' %}    
+
+    <!-- Footer -->
+    {% include 'includes/footer.html' %}
+    
+    <!-- Scripts -->
+    <script src="{% static 'js/sidebar.js' %}"></script>
     <script src="{% static 'js/script.js' %}"></script>
     {% block extra_scripts %}{% endblock %}
-
 </body>
 </html>
-

@@ -1,0 +1,250 @@
+/* ===== HEADER ULTRA SIMPLE ===== */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: #2c3e50;
+    color: white;
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    align-items: center;
+    padding: 0 15px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    gap: 15px;
+}
+
+/* Celda 1: Hamburguesa */
+.hamburger-btn {
+    background: transparent;
+    background: rgba(0, 0, 0, 0.2);
+    border: none;
+    color: #00cec9;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.hamburger-btn:hover {
+    background: rgba(0, 206, 201, 0.1);
+    color: white;
+}
+
+/* Celda 2: Título (centrado) */
+.main-header h1 {
+    color: #00cec9;
+    font-size: 1.5rem;
+    margin: 0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Celda 3: Usuario */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 8px 15px;
+    border-radius: 20px;
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.user-info i {
+    color: #00cec9;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.user-info span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+    max-width: 180px;
+}
+
+/* Para login cuando no está autenticado */
+.user-info a {
+    color: white;
+    text-decoration: none;
+    /* background: #3498db; */
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+    white-space: nowrap;
+}
+
+.user-info a:hover {
+    background: #2980b9;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    position: fixed;
+    top: 70px; /* Debajo del header */
+    left: -280px; /* Oculto por defecto */
+    width: 280px;
+    height: calc(100vh - 70px); /* Desde header hasta abajo */
+    background: #34495e;
+    z-index: 999;
+    transition: left 0.3s ease;
+    box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+    overflow-y: auto;
+}
+
+/* ... resto del CSS del sidebar ... */
+.sidebar.active {
+    left: 0;
+}
+
+/* Botón cerrar - arriba a la derecha */
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.3rem;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background: rgba(0, 206, 201, 0.2);
+    color: #00cec9;
+    transform: rotate(90deg);
+}
+
+/* Navegación del sidebar */
+.sidebar-nav {
+    padding: 60px 0 20px 0; /* Espacio para el botón cerrar */
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    margin: 0;
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    padding: 14px 20px;
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-nav a i {
+    margin-right: 12px;
+    width: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.sidebar-nav a:hover {
+    background: rgba(0, 0, 0, 0.2);
+    color: #00cec9;
+    border-left-color: #00cec9;
+    padding-left: 25px;
+}
+
+.sidebar-nav a.active {
+    background: rgba(0, 206, 201, 0.1);
+    color: #00cec9;
+    border-left-color: #00cec9;
+    font-weight: bold;
+}
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+#mainContent {
+    margin-top: 30px; /* Espacio para el header */
+    padding: 20px;
+    min-height: calc(100vh - 70px - 150px); /* Resta header y footer */
+}
+
+/* ===== FOOTER ===== */
+footer {
+    position: relative;
+    background: #1f1f2f;
+    color: #f0f0f0;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* ===== AJUSTES GENERALES ===== */
+body {
+    padding-top: 70px; /* Para el header fijo */
+    position: relative;
+}
+
+/* Prevenir que el sidebar tape el contenido cuando está abierto */
+.sidebar.active ~ #mainContent {
+    position: relative;
+    z-index: 1;
+}
+
+/* Scrollbar personalizado para sidebar */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #00cec9;
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #00a8a3;
+}
+
+/* ===== RESPONSIVE (solo pequeños ajustes) ===== */
+@media (max-width: 768px) {
+    .main-header {
+        padding: 0 10px;
+    }
+    
+    .main-header h1 {
+        font-size: 1.2rem;
+        left: calc(50% + 20px);
+    }
+    
+    .user-info {
+        max-width: 150px;
+        font-size: 0.9rem;
+        padding: 5px 10px;
+    }
+    
+    .sidebar {
+        width: 250px;
+        left: -250px;
+    }
+}

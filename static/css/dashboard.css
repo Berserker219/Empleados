@@ -5,6 +5,9 @@
     gap: 20px;
     padding: 20px;
     background-color: #f5f7fa;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 /* Menú lateral */
@@ -72,10 +75,13 @@
 /* Animaciones y efectos */
 .grafico-container {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-        flex: 1;
+    flex: 1;
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .grafico-container:hover {
