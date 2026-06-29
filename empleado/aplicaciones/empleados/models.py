@@ -22,7 +22,7 @@ class Empleado(models.Model):
     fecha_contratacion = models.DateField('Fecha de contratación', null=True, blank=True)
     genero = models.CharField('Género', max_length=1, choices=[('M', 'Masculino'), ('F', 'Femenino'), ('O', 'Otro')], blank=True)
     salario = models.DecimalField('Salario', max_digits=10, decimal_places=2, null=True, blank=True)
-    
+    fecha_nacimiento = models.DateField('Fecha Nacimiento', null=True, blank=True)
 
     def __str__(self):
         return  self.first_name
@@ -33,3 +33,32 @@ class Empleado(models.Model):
         if self.fecha_contratacion:
             return (date.today() - self.fecha_contratacion).days // 365
         return 0
+
+    @property
+    def cumpleaños(self):
+        if not self.fecha_nacimiento:
+            return None  # Si no hay fecha registrada
+
+        hoy = date.today()
+        dia, mes, año = self.fecha_nacimiento.day, self.fecha_nacimiento.month, self.fecha_nacimiento.year
+
+        # Fecha del cumpleaños este año
+        cumple = date(hoy.year, mes, dia)
+
+        # Si ya pasó, calcular para el próximo año
+        if cumple < hoy:
+            cumple = date(hoy.year + 1, mes, dia)
+
+        # Edad actual
+        edad = hoy.year - año
+        if (hoy.month, hoy.day) < (mes, dia):
+            edad -= 1
+
+        # Días faltantes
+        dias_faltan = (cumple - hoy).days
+
+        return {
+            "edad": edad,
+            "dias_faltan": dias_faltan,
+            "proximo_cumple": cumple
+        }

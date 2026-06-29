@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="dashboard-container">
+  <aside class="menu-lateral">
+    <h3>Asistencia</h3>
+    <ul>
+      <li><a href="#" class="active">Registro</a></li>
+      <li><a href="#">Historial</a></li>
+    </ul>
+  </aside>
+
+  <div class="graficos-container">
+    <section id="asistencia-section">
+      <h2>Registro de Asistencia</h2>
+      <table class="empleados-table">
+        <thead>
+          <tr>
+            <th>Empleado</th>
+            <th>Fecha</th>
+            <th>Entrada</th>
+            <th>Salida</th>
+            <th>Presente</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for asistencia in asistencias %}
+          <tr>
+            <td>{{ asistencia.empleado.full_name }}</td>
+            <td>{{ asistencia.fecha }}</td>
+            <td>{{ asistencia.hora_entrada }}</td>
+            <td>{{ asistencia.hora_salida }}</td>
+            <td>{{ asistencia.presente|yesno:"Sí,No" }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="5" class="no-results">No hay registros de asistencia</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>
+{% endblock %}

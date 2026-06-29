@@ -7,4 +7,4 @@ Un proyecto donde se puede registrar empleados y departamentos de una empresa.
 - En administrar poner la acciones de editar e eliminar en lista de empleado y quitar esa funcion.
 - En agregar departamentos, quitar el url del header y poner un icono de más en departamentos.
 - En agregar empleados, quitar el url del header y poner un icono de más en lista de empleados.
-- Hacer el heder vertical, agregarle mas funcionalidades."# Psicometria" 
+- Hacer el heder vertical, agregarle mas funcionalidades.

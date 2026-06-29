@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="dashboard-container">
+  <!-- Sidebar -->
+  <aside class="menu-lateral">
+    <h3>Vacaciones</h3>
+    <ul>
+      <li><a href="#" class="active">Solicitudes</a></li>
+      <li><a href="#">Historial</a></li>
+      <li><a href="#">Días restantes</a></li>
+    </ul>
+  </aside>
+
+  <!-- Contenido principal -->
+  <div class="graficos-container">
+    <section id="vacaciones-section">
+      <h2>Solicitudes de Vacaciones</h2>
+      <table class="empleados-table">
+        <thead>
+          <tr>
+            <th>Empleado</th>
+            <th>Días Totales</th>
+            <th>Días Usados</th>
+            <th>Días Restantes</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for vacacion in vacaciones %}
+          <tr>
+            <td>{{ vacacion.empleado.full_name }}</td>
+            <td>{{ vacacion.dias_totales }}</td>
+            <td>{{ vacacion.dias_usados }}</td>
+            <td>{{ vacacion.dias_restantes }}</td>
+            <td>{{ vacacion.aprobado|yesno:"Aprobado,Pendiente" }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="5" class="no-results">No hay solicitudes registradas</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </div>
+</div>
+{% endblock %}
