@@ -1,30 +1,56 @@
-/* Estilos generales del dashboard */
+/* ==========================================
+   DASHBOARD.CSS - Estilos del panel de control
+   ========================================== */
+
+/* ==========================================
+   CONTENEDOR PRINCIPAL DEL DASHBOARD
+   ========================================== */
+
 .dashboard-container {
     display: flex;
-    min-height: calc(100vh - 120px); /* Ajusta según tu header/footer */
-    gap: 20px;
-    padding: 20px;
-    background-color: #f5f7fa;
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
+    min-height: calc(100vh - 70px); /* Resta la altura del header */
+    background-color: #f5f6fa;
+    position: relative;
 }
 
-/* Menú lateral */
+/* ==========================================
+   MENÚ LATERAL FIJO
+   ========================================== */
+
 .menu-lateral {
-    width: 250px;
-    background: #2c3e50;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    min-width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px 0;
+    position: fixed; /* Fijo en la pantalla */
+    top: 70px; /* Debajo del header */
+    left: 0;
+    height: calc(100vh - 70px); /* Ocupa toda la pantalla menos el header */
+    overflow-y: auto; /* Scroll interno si hay muchos items */
+    z-index: 100;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Scrollbar personalizado */
+.menu-lateral::-webkit-scrollbar {
+    width: 4px;
+}
+
+.menu-lateral::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.menu-lateral::-webkit-scrollbar-thumb {
+    background: #3498db;
+    border-radius: 3px;
 }
 
 .menu-lateral h3 {
-    color: #ecf0f1;
-    margin-bottom: 20px;
-    font-size: 1.2rem;
-    border-bottom: 1px solid #34495e;
-    padding-bottom: 10px;
+    padding: 0 20px;
+    margin-bottom: 30px;
+    color: #3498db;
+    font-size: 1.2em;
 }
 
 .menu-lateral ul {
@@ -33,115 +59,101 @@
     margin: 0;
 }
 
-.menu-lateral li {
-    margin-bottom: 10px;
+.menu-lateral ul li {
+    margin-bottom: 5px;
 }
 
-.menu-lateral a {
-    color: #bdc3c7;
-    text-decoration: none;
+.menu-lateral ul li a {
     display: block;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.menu-lateral a:hover {
-    background: #34495e;
+    padding: 12px 20px;
     color: #ecf0f1;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
 }
 
-.menu-lateral a.active {
-    background: #3498db;
-    color: white;
-    font-weight: bold;
+.menu-lateral ul li a:hover,
+.menu-lateral ul li a.active {
+    background-color: #34495e;
+    border-left-color: #3498db;
+    color: #3498db;
 }
 
+.menu-lateral ul li a i {
+    margin-right: 10px;
+    width: 20px;
+}
 
-/* Contenedor principal */
-.grafico-container {
+/* ==========================================
+   CONTENEDOR DE GRÁFICOS
+   ========================================== */
+
+.graficos-container {
     flex: 1;
-    background: white;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-left: 250px; /* Espacio para el menú fijo */
+    padding: 20px 30px;
+    background-color: #f5f6fa;
+    min-height: calc(100vh - 70px);
 }
 
-
-/* Animaciones y efectos */
-.grafico-container {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-.grafico-container:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
+/* ==========================================
+   GRÁFICO PRINCIPAL
+   ========================================== */
 
 .grafico-principal {
     background: white;
-    border-radius: 8px;
-    padding: 20px;
+    border-radius: 10px;
+    padding: 25px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     height: 400px;
     position: relative;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.grafico-principal:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.grafico-principal canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* ==========================================
+   MINI GRÁFICOS (Grid)
+   ========================================== */
 
 .mini-graficos {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    gap: 20px;
 }
 
 .mini-grafico {
     background: white;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     height: 200px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-
-/* Estilos para cuando no hay datos */
-.no-data {
-    text-align: center;
-    color: #7f8c8d;
-    padding: 40px;
-    font-size: 1.1rem;
+.mini-grafico:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Loader para carga de gráficos */
-.chart-loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+.mini-grafico canvas {
+    width: 100% !important;
+    height: 100% !important;
 }
 
-.loader {
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid #3498db;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 2s linear infinite;
-}
+/* ==========================================
+   ESTADOS DE CARGA Y ERRORES
+   ========================================== */
 
-
-
-
-/* Loader y mensajes */
 .chart-loading {
     display: flex;
     justify-content: center;
@@ -164,18 +176,18 @@
     100% { transform: rotate(360deg); }
 }
 
-.no-data, .error-message {
-    text-align: center;
-    padding: 20px;
-    width: 100%;
-}
-
 .no-data {
+    text-align: center;
     color: #7f8c8d;
+    padding: 40px;
+    font-size: 1.1rem;
 }
 
 .error-message {
+    text-align: center;
     color: #e74c3c;
+    padding: 20px;
+    width: 100%;
 }
 
 .error-container {
@@ -184,32 +196,62 @@
     padding: 20px;
 }
 
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-
-/* Responsive */
 @media (max-width: 992px) {
     .mini-graficos {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .mini-grafico {
-        height: 250px;
+        height: 220px;
     }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .dashboard-container {
         flex-direction: column;
     }
     
     .menu-lateral {
+        position: relative; /* Cambia a relativo en móviles */
+        top: 0;
         width: 100%;
+        min-width: unset;
+        height: auto;
+        max-height: 300px;
+        padding: 15px 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
         margin-bottom: 20px;
+    }
+    
+    .menu-lateral h3 {
+        margin-bottom: 15px;
+    }
+    
+    .menu-lateral ul li a {
+        padding: 10px 20px;
+    }
+    
+    .graficos-container {
+        margin-left: 0;
+        padding: 0 15px 30px 15px;
+        min-height: auto;
+    }
+    
+    .grafico-principal {
+        height: 300px;
+        padding: 15px;
+    }
+    
+    .mini-graficos {
+        grid-template-columns: 1fr;
+    }
+    
+    .mini-grafico {
+        height: 250px;
     }
 }

@@ -23,6 +23,7 @@ class Empleado(models.Model):
     genero = models.CharField('Género', max_length=1, choices=[('M', 'Masculino'), ('F', 'Femenino'), ('O', 'Otro')], blank=True)
     salario = models.DecimalField('Salario', max_digits=10, decimal_places=2, null=True, blank=True)
     fecha_nacimiento = models.DateField('Fecha Nacimiento', null=True, blank=True)
+    activo = models.BooleanField(default=True)
 
     def __str__(self):
         return  self.first_name

@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="dashboard-container">
+  <aside class="menu-lateral">
+    <h3>Recursos Humanos</h3>
+    <ul>
+        <li><a href="{% url 'recursos_humanos:vacaciones_list' %}" 
+                class="{% if request.resolver_match.url_name == 'vacaciones_list' %}active{% endif %}">
+            <i class="fas fa-umbrella-beach"></i> Vacaciones
+        </a></li>
+        
+        <li><a href="{% url 'recursos_humanos:solicitud_create' %}"
+                class="{% if request.resolver_match.url_name == 'solicitud_create' %}active{% endif %}">
+            <i class="fas fa-file-alt"></i> Solicitudes
+        </a></li>
+        
+        <li><a href="{% url 'recursos_humanos:permisos_list' %}"
+                class="{% if request.resolver_match.url_name == 'permisos_list' %}active{% endif %}">
+            <i class="fas fa-clock"></i> Permisos
+        </a></li>
+        
+        <li><a href="{% url 'recursos_humanos:asistencia_list' %}"
+                class="{% if request.resolver_match.url_name == 'asistencia_list' %}active{% endif %}">
+            <i class="fas fa-calendar-check"></i> Asistencia
+        </a></li>
+    </ul>
+  </aside>
+
+  <main class="dashboard-main">
+    <h1>Dashboard de Recursos Humanos</h1>
+    
+    <!-- Indicadores clave -->
+    <div class="indicadores-grid">
+      <div class="indicador-card">
+        <div class="indicador-icon">
+          <i class="fas fa-users"></i>
+        </div>
+      </div>
+      
+      <div class="indicador-card">
+        <div class="indicador-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="indicador-info">
+          <h3>{{ solicitudes_aprobadas_mes }}</h3>
+          <p>Solicitudes Aprobadas este Mes</p>
+        </div>
+      </div>
+      
+      <div class="indicador-card">
+        <div class="indicador-icon">
+          <i class="fas fa-umbrella-beach"></i>
+        </div>
+        <div class="indicador-info">
+          <h3>{{ vacaciones_pendientes }}</h3>
+          <p>Vacaciones Pendientes</p>
+        </div>
+      </div>
+      
+      <div class="indicador-card">
+        <div class="indicador-icon">
+          <i class="fas fa-user-clock"></i>
+        </div>
+        <div class="indicador-info">
+          <h3>{{ permisos_activos }}</h3>
+          <p>Permisos Activos Hoy</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Resumen de solicitudes pendientes -->
+    <div class="dashboard-grid">
+      <div class="dashboard-card">
+        <h2><i class="fas fa-bell"></i> Solicitudes Pendientes</h2>
+        <div class="solicitudes-list">
+          {% if solicitudes_vacaciones_pendientes > 0 %}
+          <div class="solicitud-item">
+            <span class="solicitud-icon">🏖️</span>
+            <span class="solicitud-texto">{{ solicitudes_vacaciones_pendientes }} solicitudes de vacaciones pendientes</span>
+          </div>
+          {% endif %}
+          
+          {% if solicitudes_permisos_pendientes > 0 %}
+          <div class="solicitud-item">
+            <span class="solicitud-icon">⏰</span>
+            <span class="solicitud-texto">{{ solicitudes_permisos_pendientes }} solicitudes de permisos pendientes</span>
+          </div>
+          {% endif %}
+          
+          {% if solicitudes_documentos_pendientes > 0 %}
+          <div class="solicitud-item">
+            <span class="solicitud-icon">📄</span>
+            <span class="solicitud-texto">{{ solicitudes_documentos_pendientes }} solicitudes de documentos pendientes</span>
+          </div>
+          {% endif %}
+          
+          {% if solicitudes_vacaciones_pendientes == 0 and solicitudes_permisos_pendientes == 0 and solicitudes_documentos_pendientes == 0 %}
+          <div class="solicitud-item">
+            <span class="solicitud-icon">✅</span>
+            <span class="solicitud-texto">No hay solicitudes pendientes</span>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+      
+      <!-- Próximos cumpleaños -->
+      <div class="dashboard-card">
+        <h2><i class="fas fa-birthday-cake"></i> Próximos Cumpleaños</h2>
+        <div class="cumpleanos-list">
+          {% if cumpleaneros_semana %}
+            {% for empleado in cumpleaneros_semana %}
+            <div class="cumpleano-item">
+              <div class="cumpleano-info">
+                <span class="cumpleano-nombre">{{ empleado.nombre }} {{ empleado.apellido }}</span>
+                <span class="cumpleano-fecha">{{ empleado.fecha_nacimiento|date:"d/m" }}</span>
+              </div>
+            </div>
+            {% endfor %}
+          {% else %}
+            <p class="no-data">No hay cumpleaños próximos esta semana</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    
+    <!-- Últimas liquidaciones -->
+    <div class="dashboard-card full-width">
+      <h2><i class="fas fa-file-invoice"></i> Últimas Liquidaciones</h2>
+      {% if ultimas_liquidaciones %}
+      <table class="liquidaciones-table">
+        <thead>
+          <tr>
+            <th>Empleado</th>
+            <th>Tipo</th>
+            <th>Fecha</th>
+            <th>Estado</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for liquidacion in ultimas_liquidaciones %}
+          <tr>
+            <td>{{ liquidacion.empleado.nombre }} {{ liquidacion.empleado.apellido }}</td>
+            <td>{{ liquidacion.tipo }}</td>
+            <td>{{ liquidacion.fecha_solicitud|date:"d/m/Y" }}</td>
+            <td>
+              <span class="estado-badge estado-{{ liquidacion.estado }}">
+                {{ liquidacion.get_estado_display }}
+              </span>
+            </td>
+            <td>
+              <a href="#" class="btn-ver">Ver</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p class="no-data">No hay liquidaciones recientes</p>
+      {% endif %}
+    </div>
+    
+    <!-- Accesos rápidos -->
+    <div class="dashboard-card full-width">
+      <h2><i class="fas fa-bolt"></i> Accesos Rápidos</h2>
+      <div class="accesos-rapidos">
+        <a href="{% url 'recursos_humanos:vacaciones_list' %}" class="acceso-btn">
+          <i class="fas fa-umbrella-beach"></i>
+          <span>Vacaciones</span>
+        </a>
+        <a href="{% url 'recursos_humanos:permisos_list' %}" class="acceso-btn">
+          <i class="fas fa-clock"></i>
+          <span>Permisos</span>
+        </a>
+        <a href="{% url 'recursos_humanos:solicitud_create' %}" class="acceso-btn">
+          <i class="fas fa-file-alt"></i>
+          <span>Solicitudes</span>
+        </a>
+        <a href="{% url 'recursos_humanos:asistencia_list' %}" class="acceso-btn">
+          <i class="fas fa-calendar-check"></i>
+          <span>Asistencia</span>
+        </a>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}

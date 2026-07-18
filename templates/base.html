@@ -9,37 +9,16 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{%static 'css/dashboard_rh.css'%}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     
-        <!-- Header -->
-        
-    <header class="main-header">
-        <!-- Celda 1: Hamburguesa -->
-        <button class="hamburger-btn" id="hamburgerBtn">
-            <i class="fas fa-bars"></i>
-        </button>
-        
-        <!-- Celda 2: Título -->
-        <h1>App de Empleados</h1>
-        
-        <!-- Celda 3: Usuario -->
-        {% if user.is_authenticated %}
-            <div class="user-info">
-                <i class="fas fa-user-circle"></i>
-                <span>{{ user.username }}</span>
-            </div>
-        {% else %}
-            <div class="user-info">
-                <a href="{% url 'users:login' %}">
-                    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
-                </a>
-            </div>
-        {% endif %}
-    </header>
+    <!-- Header -->
+    {% include 'includes/header.html' %}
 
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
@@ -64,7 +43,10 @@
                        class="{% if request.resolver_match.url_name == 'dashboard_general' %}active{% endif %}">
                     <i class="fas fa-chart-bar"></i> Informes
                 </a></li>
-                
+                <li><a href="{% url 'recursos_humanos:general' %}"
+                       class="{% if request.resolver_match.url_name == 'general' %}active{% endif %}">
+                    <i class="fas fa-chart-bar"></i> Recursos Humanos
+                </a></li>
                 {% if user.is_authenticated %}
                     <li><a href="{% url 'users:logout' %}">
                         <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
@@ -81,13 +63,11 @@
         </nav>
     </aside>
 
-    <!-- Contenido principal -->
+    <!-- Contenido principal con footer incluido -->
     <main id="mainContent">
         {% block content %}{% endblock content %}
+        
     </main>
-
-    <!-- Footer -->
-    {% include 'includes/footer.html' %}
     
     <!-- Scripts -->
     <script src="{% static 'js/sidebar.js' %}"></script>

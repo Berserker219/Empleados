@@ -1,12 +1,16 @@
 from django.urls import path
-from .views import (
+from .views import (GeneralViews,
     VacacionesListView, VacacionesDetailView,
     SolicitudCreateView,
     PermisoListView,
     AsistenciaListView
 )
 
+app_name = 'recursos_humanos'
+
+
 urlpatterns = [
+    path('', GeneralViews.as_view(), name='general'),
     path("vacaciones/", VacacionesListView.as_view(), name="vacaciones_list"),
     path("vacaciones/<int:pk>/", VacacionesDetailView.as_view(), name="vacaciones_detail"),
     path("solicitudes/nueva/", SolicitudCreateView.as_view(), name="solicitud_create"),

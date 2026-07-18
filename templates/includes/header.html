@@ -1,4 +1,23 @@
-
-<header>
-    <h1>App de Empleados</h1>
-</header>
+<header class="main-header">
+        <!-- Celda 1: Hamburguesa -->
+        <button class="hamburger-btn" id="hamburgerBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <!-- Celda 2: Título -->
+        <h1>App de Empleados</h1>
+        
+        <!-- Celda 3: Usuario -->
+        {% if user.is_authenticated %}
+            <div class="user-info">
+                <i class="fas fa-user-circle"></i>
+                <span>{{ user.username }}</span>
+            </div>
+        {% else %}
+            <div class="user-info">
+                <a href="{% url 'users:login' %}">
+                    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                </a>
+            </div>
+        {% endif %}
+    </header>
