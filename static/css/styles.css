@@ -88,6 +88,73 @@ form button {
     padding: 8px;
 }
 
+/* Estilo para botón de regresar */
+.btn-regresar {
+    display: inline-flex;          /* alinea ícono y texto */
+    align-items: center;
+    gap: 8px;                      /* espacio entre ícono y texto */
+    padding: 10px 15px;
+    background-color: transparent; /* fondo transparente */
+    color: #00cec9;                /* color principal */
+    border: 2px solid #00cec9;     /* borde con el mismo color */
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-regresar i {
+    font-size: 18px;               /* tamaño del ícono */
+}
+
+.btn-regresar:hover {
+    background-color: #00cec9;     /* fondo se pinta al pasar el mouse */
+    color: white;                  /* texto e ícono cambian a blanco */
+}
+
+
+/* Contenedor de encabezado con botón regresar */
+.header-modificar {
+    display: flex;
+    align-items: center;       /* centra verticalmente */
+    justify-content: center;   /* centra todo el contenido horizontalmente */
+    position: relative;        /* permite posicionar el botón */
+    padding: 10px;
+}
+
+/* Título centrado */
+.header-modificar h1 {
+    margin: 0;
+    font-size: 2rem;
+    text-align: center;
+    flex: 1;                   /* ocupa todo el espacio disponible */
+}
+
+/* Botón regresar en la esquina izquierda */
+.header-modificar .btn-regresar {
+    position: absolute;
+    left: 10px;                /* pegado al lado izquierdo */
+    top: 50%;
+    transform: translateY(-50%); /* centrado verticalmente */
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    background-color: transparent;
+    color: #00cec9;
+    border: 2px solid #00cec9;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.header-modificar .btn-regresar:hover {
+    background-color: #00cec9;
+    color: white;
+}
+
+
 /* ==========================================
    SECCIÓN DE INICIO
    ========================================== */
@@ -389,7 +456,7 @@ h3 {
    BOTONES DE ACCIÓN UNIFICADOS
    ========================================== */
 
-/* Se unifican todos los .action-button en un solo lugar */
+
 .action-button {
     padding: 5px 10px;
     border-radius: 5px;

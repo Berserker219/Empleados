@@ -2,8 +2,13 @@
 
 {% block content %}
 <section id="lista-empleados-area">
-    <h1>Empleados del Departamento: {{ area_empleados.shor_name }}</h1>
-
+    
+    <div class="header-modificar">
+        <h1>Empleados del Departamento: {{ area_empleados.shor_name }}</h1>
+        <a href="javascript:history.back()" class="btn-regresar">
+            <i class="fa-solid fa-circle-arrow-left"></i>
+        </a>
+    </div>
 
     <!-- Tabla de Empleados -->
     <div class="table-container">

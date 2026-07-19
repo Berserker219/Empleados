@@ -9,7 +9,14 @@ Edita Empleado
 {% block content %}
 
 <section id="editar-empleado">
-    <h1>Modificar Datos de Empleado</h1>
+    
+    <div class="header-modificar">
+        <h1>Modificar Datos de Empleado</h1>
+        <a href="javascript:history.back()" class="btn-regresar">
+            <i class="fa-solid fa-circle-arrow-left"></i>
+        </a>
+    </div>
+
 
     <div class="form-container">
         <form method="post" class="editar-form"> {% csrf_token %}

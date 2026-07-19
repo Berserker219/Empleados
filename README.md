@@ -4,5 +4,5 @@ Un proyecto donde se puede registrar empleados y departamentos de una empresa, c
 
 
 # Mejoras
-- Modificar los datos pruebas, agregarle los datos faltantes
+
 - terminar las funcionalidades de Recursos humanos

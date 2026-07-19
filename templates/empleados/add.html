@@ -3,7 +3,13 @@
 {% block content %}
 
 <section id="agregar-empleado">
-    <h1>Registrar Nuevo Empleado</h1>
+    
+    <div class="header-modificar">
+        <h1>Registrar Nuevo Empleado</h1>
+        <a href="javascript:history.back()" class="btn-regresar">
+            <i class="fa-solid fa-circle-arrow-left"></i>
+        </a>
+    </div>
 
     <div class="form-container">
         <form method="POST" enctype="multipart/form-data" class="agregar-form"> {% csrf_token %}

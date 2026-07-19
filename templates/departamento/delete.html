@@ -2,7 +2,13 @@
 
 {% block content %}
 <section id="eliminar-empleado">
-    <h1>Eliminar Departamento: {{ object.name }}</h1>
+    
+    <div class="header-modificar">
+        <h1>Eliminar Departamento: {{ object.name }}</h1>
+        <a href="javascript:history.back()" class="btn-regresar">
+            <i class="fa-solid fa-circle-arrow-left"></i>
+        </a>
+    </div>
 
     <div class="confirmacion-container">
         <form method="POST" class="confirmacion-form"> {% csrf_token %}

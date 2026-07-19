@@ -5,9 +5,15 @@
 <section id="detalle-empleado">
     <div class="profile-container">
         <div class="profile-card">
+
             <!-- Encabezado de la tarjeta -->
             <div class="profile-header">
-                <h2>{{ detalle.job }}</h2>
+                <div class="header-modificar">
+                    <h2>{{ detalle.job }}</h2>
+                    <a href="javascript:history.back()" class="btn-regresar">
+                        <i class="fa-solid fa-circle-arrow-left"></i>
+                    </a>
+                </div>
             </div>
 
             <!-- Avatar del empleado -->
@@ -22,10 +28,43 @@
             <!-- Información del empleado -->
             <div class="profile-info">
                 <h3>{{ detalle.full_name }}</h3>
+
+                <!-- Datos personales -->
                 <p><strong>Nombre:</strong> {{ detalle.first_name }}</p>
                 <p><strong>Apellido:</strong> {{ detalle.last_name }}</p>
+                <p><strong>Género:</strong> {{ detalle.get_genero_display }}</p>
+                <p><strong>Fecha de nacimiento:</strong> {{ detalle.fecha_nacimiento }}</p>
+                <p><strong>Dirección:</strong> {{ detalle.direccion }}</p>
+                <p><strong>Teléfono:</strong> {{ detalle.telefono }}</p>
+                <p><strong>Correo:</strong> {{ detalle.correo }}</p>
+                <p><strong>Contacto de emergencia:</strong> {{ detalle.contacto_emergencia }}</p>
+                <p><strong>Teléfono de emergencia:</strong> {{ detalle.telefono_emergencia }}</p>
+
+                <!-- Datos laborales -->
                 <p><strong>Departamento:</strong> {{ detalle.departamento.shor_name }}</p>
-                <p><strong>Fecha Nacimiento:</strong> {{detalle.fecha_nacimiento}}</p>
+                <p><strong>Fecha de contratación:</strong> {{ detalle.fecha_contratacion }}</p>
+                <p><strong>Salario:</strong> ${{ detalle.salario }}</p>
+                <p><strong>Antigüedad:</strong> {{ detalle.antiguedad }} años</p>
+                <p><strong>Estado:</strong> {% if detalle.activo %}Activo{% else %}Inactivo{% endif %}</p>
+
+                <!-- Documentos -->
+                <div class="profile-docs">
+                    <h4>Documentos</h4>
+                    <ul>
+                        {% if detalle.identificacion %}
+                            <li><a href="{{ detalle.identificacion.url }}" target="_blank">Identificación</a></li>
+                        {% endif %}
+                        {% if detalle.contrato %}
+                            <li><a href="{{ detalle.contrato.url }}" target="_blank">Contrato</a></li>
+                        {% endif %}
+                        {% if detalle.comprobante_domicilio %}
+                            <li><a href="{{ detalle.comprobante_domicilio.url }}" target="_blank">Comprobante de domicilio</a></li>
+                        {% endif %}
+                        {% if not detalle.identificacion and not detalle.contrato and not detalle.comprobante_domicilio %}
+                            <p class="no-skills">No hay documentos registrados.</p>
+                        {% endif %}
+                    </ul>
+                </div>
 
                 <!-- Habilidades -->
                 <div class="profile-skills">
@@ -45,6 +84,4 @@
     </div>
 </section>
 
-
 {% endblock content %}
-
